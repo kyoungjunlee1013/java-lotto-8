@@ -5,7 +5,7 @@ import lotto.Lotto;
 import java.util.List;
 import lotto.domain.LottoResult;
 import lotto.domain.Rank;
-import java.util.List;
+import java.util.Map;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -50,6 +50,17 @@ public class OutputView {
 
     private String formatPrize(long prize) {
         return String.valueOf(prize);
+    }
+
+    public void printProfitRate(int purchaseAmount, LottoResult lottoResult) {
+        long totalPrize = lottoResult.calculateTotalPrize();
+
+        double profitRate = (double) totalPrize / purchaseAmount * 100;
+
+        double roundedProfitRate = Math.round(profitRate * 100.0) / 100.0;
+
+        String formattedRate = String.format("%.2f%%", roundedProfitRate);
+        System.out.println(String.format("총 수익률은 %s입니다.", formattedRate));
     }
 }
 

@@ -21,4 +21,16 @@ public class LottoResult {
     public Map<Rank, Integer> getResult() {
         return Collections.unmodifiableMap(result); // 해당 rank의 불변성을 위한 로직
     }
+    public long calculateTotalPrize() {
+        long totalPrize = 0;
+
+        for (Map.Entry<Rank, Integer> entry : result.entrySet()) {
+            Rank rank = entry.getKey();
+            int count = entry.getValue();
+
+            // (해당 등수 상금 * 당첨 개수)를 모두 더함
+            totalPrize += rank.getPrize() * count;
+        }
+        return totalPrize;
+    }
 }

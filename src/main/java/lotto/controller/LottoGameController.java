@@ -34,6 +34,7 @@ public class LottoGameController {
         int bonusNumber = readBonusNumberWithRetry(winningNumbers);
         LottoResult lottoResult = compileLottoResults(purchasedLottos, winningNumbers, bonusNumber);
         outputView.printWinningResult(lottoResult);
+        outputView.printProfitRate(amount, lottoResult);
 
     }
 
