@@ -1,6 +1,9 @@
 package lotto.controller;
 
+import lotto.validator.InputValidator;
 import lotto.view.InputView;
+
+import java.util.List;
 
 import static lotto.validator.InputValidator.validateAndConvertAmount;
 
@@ -15,9 +18,9 @@ public class LottoGameController {
 
     public void start(){
         int amount = readPurchaseAmountWithRetry();
-
         int lottoCount = calculateLottoCount(amount);
 
+        List<Integer> WinningNumbers = readWinningNumbersWithRetry();
         // TODO: 기능 2.1 (로또 발행)으로 연결
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
@@ -28,6 +31,16 @@ public class LottoGameController {
                 return validateAndConvertAmount(input);
             }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage()   );
+            }
+        }
+    }
+    private List<Integer> readWinningNumbersWithRetry(){
+        while(true){
+            try{
+                String input = inputView.readWinningNumbers();
+                return InputValidator.validateAndConvertWinningNumbers(input);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
         }
     }
