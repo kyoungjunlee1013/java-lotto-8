@@ -25,15 +25,13 @@ public class OutputView {
         System.out.println("\n당첨 통계");
         System.out.println("---");
 
-        List<Rank> ranks = Arrays.asList(Rank.values());
-        Collections.reverse(ranks);
+        Map<Rank, Integer> result = lottoResult.getResult();
 
-        for (Rank rank : ranks) {
-            if (rank == Rank.MISS) {
-                continue; // MISS(낙첨)는 통계에 출력하지 않음
-            }
-            printRankStatistic(rank, lottoResult.getResult().get(rank));
-        }
+        printRankStatistic(Rank.FIFTH, result.get(Rank.FIFTH));
+        printRankStatistic(Rank.FOURTH, result.get(Rank.FOURTH));
+        printRankStatistic(Rank.THIRD, result.get(Rank.THIRD));
+        printRankStatistic(Rank.SECOND, result.get(Rank.SECOND));
+        printRankStatistic(Rank.FIRST, result.get(Rank.FIRST));
     }
     private void printRankStatistic(Rank rank, int count) {
         String matchInfo = formatMatchInfo(rank);
