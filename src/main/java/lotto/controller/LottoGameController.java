@@ -15,6 +15,11 @@ public class LottoGameController {
 
     public void start(){
         int amount = readPurchaseAmountWithRetry();
+
+        int lottoCount = calculateLottoCount(amount);
+
+        // TODO: 기능 2.1 (로또 발행)으로 연결
+        System.out.println(lottoCount + "개를 구매했습니다.");
     }
     private int readPurchaseAmountWithRetry(){
         while(true){
