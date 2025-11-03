@@ -55,9 +55,9 @@ public class OutputView {
 
         double profitRate = (double) totalPrize / purchaseAmount * 100;
 
-        double roundedProfitRate = Math.round(profitRate * 100.0) / 100.0;
+        double actualRoundedRate = Math.round(profitRate * 10.0) / 10.0;
 
-        String formattedRate = String.format("%.1f%%", roundedProfitRate);
+        String formattedRate = String.format("%.1f%%", actualRoundedRate);
         System.out.println(String.format("총 수익률은 %s입니다.", formattedRate));
     }
 }
