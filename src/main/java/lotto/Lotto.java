@@ -18,6 +18,16 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
-    // TODO: 추가 기능 구현
+    public int countMatch(List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for(int number : numbers) {
+            if(winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+    public boolean hasBonus(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

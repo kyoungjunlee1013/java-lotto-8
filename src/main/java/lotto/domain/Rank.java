@@ -33,5 +33,18 @@ public enum Rank {
     public long getPrize() {
         return prize;
     }
-
+    public static Rank valueOf(int matchCount, boolean matchBonus){
+        if(matchCount < 3) {
+            return MISS;
+        }
+        if(matchCount == 5 && matchBonus) {
+            return SECOND;
+        }
+        for(Rank rank : values()) { // enum의 values는 해당 enum 타입에 정의된 모든 상수들을 배열(array) 형태로 반환한다.
+            if(rank.matchCount == matchCount && rank.matchBonus == matchBonus) {
+                return rank;
+            }
+        }
+        return MISS;
+    }
 }
