@@ -62,4 +62,7 @@ public class LottoGameController {
             }
         }
     }
+    private int calculateLottoCount(int amount) {
+        return amount / lotto.validator.InputValidator.LOTTO_PRICE;
+    }
 }
