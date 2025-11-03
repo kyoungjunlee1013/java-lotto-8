@@ -46,4 +46,12 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자 형식이어야 합니다.");
         }
     }
+    public static int validateAndConvertBonusNumber(String input, List<Integer> winningNumbers){
+            int bonusNumber = parseAndValidateRange(input.trim());
+
+            if(winningNumbers.contains(bonusNumber)){
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+        return bonusNumber;
+    }
 }

@@ -20,9 +20,11 @@ public class LottoGameController {
         int amount = readPurchaseAmountWithRetry();
         int lottoCount = calculateLottoCount(amount);
 
-        List<Integer> WinningNumbers = readWinningNumbersWithRetry();
+        List<Integer> winningNumbers = readWinningNumbersWithRetry();
+
+        int bonusNumber = readBonusNumberWithRetry(winningNumbers);
+
         // TODO: 기능 2.1 (로또 발행)으로 연결
-        System.out.println(lottoCount + "개를 구매했습니다.");
     }
     private int readPurchaseAmountWithRetry(){
         while(true){
@@ -40,6 +42,17 @@ public class LottoGameController {
                 String input = inputView.readWinningNumbers();
                 return InputValidator.validateAndConvertWinningNumbers(input);
             }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    private int readBonusNumberWithRetry(List<Integer> winningNumbers){
+        while(true) {
+            try {
+                String input = inputView.readBonusNumber();
+
+                return InputValidator.validateAndConvertBonusNumber(input, winningNumbers);
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
