@@ -33,6 +33,7 @@ public class LottoGameController {
         List<Integer> winningNumbers = readWinningNumbersWithRetry();
         int bonusNumber = readBonusNumberWithRetry(winningNumbers);
         LottoResult lottoResult = compileLottoResults(purchasedLottos, winningNumbers, bonusNumber);
+        outputView.printWinningResult(lottoResult);
 
     }
 

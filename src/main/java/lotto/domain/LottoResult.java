@@ -14,7 +14,7 @@ public class LottoResult {
     }
     public void addRank(Rank rank) {
         if (rank != Rank.MISS) {
-            result.put(rank, result.get(rank) + 1);
+            result.put(rank, result.get(rank) + 1); //키에 해당되는 integer의 값이 1 증가되는 것
         }
     }
 

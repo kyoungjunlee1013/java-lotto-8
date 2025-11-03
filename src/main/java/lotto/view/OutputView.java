@@ -3,6 +3,11 @@ package lotto.view;
 import lotto.Lotto;
 
 import java.util.List;
+import lotto.domain.LottoResult;
+import lotto.domain.Rank;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class OutputView {
 
@@ -15,4 +20,37 @@ public class OutputView {
             System.out.println(lotto.getNumbers());
         }
     }
+
+    public void printWinningResult(LottoResult lottoResult) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+
+        List<Rank> ranks = Arrays.asList(Rank.values());
+        Collections.reverse(ranks);
+
+        for (Rank rank : ranks) {
+            if (rank == Rank.MISS) {
+                continue; // MISS(낙첨)는 통계에 출력하지 않음
+            }
+            printRankStatistic(rank, lottoResult.getResult().get(rank));
+        }
+    }
+    private void printRankStatistic(Rank rank, int count) {
+        String matchInfo = formatMatchInfo(rank);
+        System.out.printf("%s (%s원) - %d개%n", matchInfo, formatPrize(rank.getPrize()), count);
+    }
+
+    private String formatMatchInfo(Rank rank) {
+        if (rank == Rank.SECOND) {
+            return String.format("%d개 일치, 보너스 볼 일치", rank.getMatchCount());
+        }
+        return String.format("%d개 일치", rank.getMatchCount());
+    }
+
+
+    private String formatPrize(long prize) {
+        return String.valueOf(prize);
+    }
 }
+
+
