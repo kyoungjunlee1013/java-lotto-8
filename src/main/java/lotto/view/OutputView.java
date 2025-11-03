@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.Lotto;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.domain.LottoResult;
 import lotto.domain.Rank;
@@ -10,7 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class OutputView {
-
+    private static final DecimalFormat PRICE_FORMAT = new DecimalFormat("#,###");
     public void printPurchasedLottos(List<Lotto> purchasedLottos) {
         int count = purchasedLottos.size();
 
@@ -47,7 +48,7 @@ public class OutputView {
 
 
     private String formatPrize(long prize) {
-        return String.valueOf(prize);
+        return PRICE_FORMAT.format(prize);
     }
 
     public void printProfitRate(int purchaseAmount, LottoResult lottoResult) {
