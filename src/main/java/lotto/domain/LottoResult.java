@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.EnumMap;
 
@@ -18,6 +19,6 @@ public class LottoResult {
     }
 
     public Map<Rank, Integer> getResult() {
-        return result;
+        return Collections.unmodifiableMap(result); // 해당 rank의 불변성을 위한 로직
     }
 }
